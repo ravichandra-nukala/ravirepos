@@ -8,10 +8,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4.5.0
-        with:
-          distribution: 'adopt'
-          cache: maven
       - uses: actions/checkout@v4
       - run: mvn clean package
