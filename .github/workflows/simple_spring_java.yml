@@ -14,4 +14,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: mvn clean package
+      - name: Cache
+        uses: actions/cache@v4.1.2
+        with:
+            # A list of files, directories, and wildcard patterns to cache and restore
+            path: ~/.m2/repository
+            # An explicit key for restoring and saving the cache
+            key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-maven-
+      - name: Build with maven
+        run: mvn clean package
